@@ -38,5 +38,21 @@ question+=1
 puts "This is running from a file"
 
 #6 - Guess the number between 1 and 10
-puts "\nQuestion #{question} in guess.rb"
+puts "\nQuestion #{question}:"
 question+=1
+number = rand(10)+1
+guessed = false
+puts "Guess the number (1-10)"
+begin
+  guess = gets().to_i
+
+  if guess > number
+  	puts "Lower..."
+  elsif guess < number
+  	puts "Higher..."
+  elsif guess == number
+    puts "You got it, #{number}"
+    guessed = true
+  end
+
+end until guessed
