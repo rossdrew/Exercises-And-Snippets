@@ -73,77 +73,11 @@ puts "(b)"
 numbers.each_slice(4) {|i| p i}
 
 #2 Initialise with nested hash structure
-puts "\nQuestion #{question}:"
+puts "\nQuestion #{question} in tree.rb"
 question+=1
-
-class Tree
-  attr_accessor :children, :node_name
-  
-  #Old method
-  # def initialize(name, children=[])
-  #   @children = children
-  #   @node_name = name
-  # end
-
- #I assume this is always a single root node based tree?
-  def initialize(family_tree={})
-    @node_name = family_tree.keys[0]
-    @children = []
-    parent_value = family_tree[node_name]
-
-    if not parent_value.nil? and not parent_value.empty?
-      parent_value.each do |child_value, child_key|
-        child_hash = {child_value => child_key}
-        @children.push(Tree.new(child_hash))
-      end
-    end
-  end
-  
-  def visit_all(&block)
-    visit &block
-    children.each {|c| c.visit_all &block}
-  end
-  
-  def visit(&block)
-    block.call self
-  end
-end
-
-family = 
-{'grandpa' => {
-			   'dad' => {
- 						 'child1' => {},
- 						 'child2' => {}
-			            },
-			   'uncle' => {
-			   			   'child3' => {},
-			   			   'child4' => {}
-			   			  }
-              }
-}
-
-my_tree = Tree.new (family)
-p my_tree
-
-puts "Visiting a node"
-my_tree.visit {|node| puts node.node_name}
- 
-puts "visiting entire tree"
-my_tree.visit_all {|node| puts node.node_name}
 
 #3 A grep that prints out the line numbers of a file that a phrase appears on
-puts "\nQuestion #{question}:"
+puts "\nQuestion #{question} in grep.rb"
 question+=1
 
-phrase = "Four"
-File.open("testSearchFile.txt") do |f1|
-  line_number = 1
-  while line = f1.gets
-    #Can be done with regexp
-    puts "#{line_number} : '#{line}'".delete("\n") if /#{phrase}/.match(line)
-    #Or without it
-    puts "#{line_number} : '#{line}'".delete("\n") if line[phrase]
-    
-    line_number += 1
-  end
-end
+
